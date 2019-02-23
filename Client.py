@@ -36,7 +36,7 @@ def main():
         print('Sending:', struct.unpack(fmt, package))
         s.send(package)
         received_pack = s.recv(256)
-        # 257 since the max size of package is 257 bytes
+        # 256 since the max size of package is 256 bytes
         unpacked = struct.unpack(create_fmt(received_pack[1]), received_pack)
         print('Received from server: ', unpacked)
         message = input("Enter message type->")
