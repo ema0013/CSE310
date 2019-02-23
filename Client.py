@@ -13,7 +13,8 @@ def main():
 
     s = socket.socket()
     s.connect((host, port))
-    print('Connected to Server')
+    welcome = s.recv(33)
+    print(welcome.decode('utf-8'))
 
     message = input("Enter message type->")
     while message != 'quit':

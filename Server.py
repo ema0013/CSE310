@@ -34,9 +34,10 @@ def get_name(email):
 
 
 def client_thread(connection):
+    connection.send(bytes('Connected successfully to server!', 'utf-8'))
     while True:
         package = connection.recv(256)
-        # 257 since the max size of package is 257 bytes
+        # 256 since the max size of package is 256 bytes
         if not package:
             break
         unpacked = struct.unpack(create_fmt(package[1]), package)
@@ -67,15 +68,13 @@ def main():
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((host, port))
-    s.listen(1)
+    s.listen(5)
+    print("Server  is listening for connections...")
     while True:
-        print("Waiting for connection...")
         connection, addr = s.accept()
-        try:
-            print("Connection from: "+str(addr))
-            client_thread(connection)
-        finally:
-            connection.close()
+        print("Connection from: "+str(addr))
+        start_new_thread(client_thread, (connection,))
+    connection.close()
 
 
 if __name__ == '__main__':
