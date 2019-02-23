@@ -2,6 +2,7 @@ import socket
 import struct
 
 
+# dictionary of randomly generated emails to names
 email_to_name = {
     'luke@gmail.com': 'Luke Skywalker',
     'brandon57@yahoo.com': 'Brandon Shwartz',
@@ -33,9 +34,9 @@ def get_name(email):
 
 def main():
     host = '127.0.0.1'
-    #ip for localhost
+    # ip for localhost
     port = 5000
-    #arbitrary port
+    # arbitrary port
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((host, port))
@@ -50,15 +51,18 @@ def main():
                 # 257 since the max size of package is 257 bytes
                 if not package:
                     break
-                if package[0] != 81:
-                    # message is not type Q
-                    print("Wrong message type")
-                    break
                 unpacked = struct.unpack(create_fmt(package[1]), package)
                 # package[1] corresponds to message length
                 print("From connected user: ", unpacked)
+                if package[0] != 81:
+                    # message is not type Q
+                    print("Wrong message type")
+                    return_pack = struct.pack('BB18s', ord('R'), 18, bytes('Wrong message Type', 'utf-8'))
+                    connection.send(return_pack)
+                    continue
                 name_return = get_name(unpacked[2].decode('utf-8'))
                 if name_return is None:
+                    # if there is no corresponding name to the email
                     name_return = 'email not found in database'
                 return_pack = struct.pack(create_fmt(len(name_return)), ord('R'), len(name_return), bytes(name_return, 'utf-8'))
                 print("Sending: ", struct.unpack(create_fmt(len(name_return)), return_pack))

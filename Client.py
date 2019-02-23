@@ -21,14 +21,14 @@ def main():
         # message type stored as 1 byte char
         message = input("Enter message size->")
         m_size = int(message)
-        if m_size >= 255:
-            print('Message size cannot be longer than 255')
+        # store length as 1 byte char???
+        if m_size > 254:
+            print('Message size cannot be longer than 254')
             message = input('Enter message type->')
             continue
-        # store length as 1 byte char???
         message = input("Enter message->")
         m_data = bytes(message, 'utf-8')
-        #create fmt string
+        # create fmt string
         fmt = create_fmt(m_size)
         package = struct.pack(fmt, m_type, m_size, m_data)
 
