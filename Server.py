@@ -69,7 +69,7 @@ def main():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((host, port))
     s.listen(5)
-    print("Server  is listening for connections...")
+    print("Server is listening for connections...")
     while True:
         connection, addr = s.accept()
         print("Connection from: "+str(addr))
