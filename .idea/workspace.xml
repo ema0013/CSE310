@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d3e65f24-80fe-4ee8-9d0c-17675929589d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNSResolver.py" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydig.py" beforeDir="false" afterPath="$PROJECT_DIR$/mydig.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,12 +26,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DNSResolver.py">
+        <entry file="file://$PROJECT_DIR$/mydig.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+            <state relative-caret-position="22">
+              <caret line="7" column="41" lean-forward="true" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#1#12#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,6 +80,7 @@
         <option value="$PROJECT_DIR$/Server.py" />
         <option value="$PROJECT_DIR$/venv/DNSResolver.py" />
         <option value="$PROJECT_DIR$/DNSResolver.py" />
+        <option value="$PROJECT_DIR$/mydig.py" />
       </list>
     </option>
   </component>
@@ -134,7 +135,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.DNSResolver">
+  <component name="RunManager" selected="Python.mydig">
     <configuration name="Client" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="CSE310" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -198,27 +199,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="TCPServer" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="CSE310" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TCPServer.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="TCPclient" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="CSE310" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -240,20 +220,41 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="mydig" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="CSE310" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mydig.py" />
+      <option name="PARAMETERS" value="play.pokemonshowdown.com" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.Client" />
       <item itemvalue="Python.Server" />
       <item itemvalue="Python.TCPclient" />
-      <item itemvalue="Python.TCPServer" />
       <item itemvalue="Python.DNSResolver" />
+      <item itemvalue="Python.mydig" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.mydig" />
         <item itemvalue="Python.DNSResolver" />
         <item itemvalue="Python.Client" />
         <item itemvalue="Python.Server" />
         <item itemvalue="Python.TCPclient" />
-        <item itemvalue="Python.TCPServer" />
       </list>
     </recent_temporary>
   </component>
@@ -324,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551857648736</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="created mydig, emulates dig tool in Linux">
+      <created>1552158525865</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1552158525865</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -337,15 +345,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49684212" visible="true" weight="0.24983476" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49684212" visible="true" weight="0.23066755" />
       <window_info id="Structure" order="1" sideWeight="0.5031579" side_tool="true" weight="0.24983476" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49966952" weight="0.70113313" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49966952" weight="0.41501418" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -370,7 +378,8 @@
     <MESSAGE value="typo" />
     <MESSAGE value="added densresolver file" />
     <MESSAGE value="testing dnsresolver" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing dnsresolver" />
+    <MESSAGE value="created mydig, emulates dig tool in Linux" />
+    <option name="LAST_COMMIT_MESSAGE" value="created mydig, emulates dig tool in Linux" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
@@ -406,12 +415,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DNSResolver.py">
+    <entry file="file://$PROJECT_DIR$/mydig.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+        <state relative-caret-position="22">
+          <caret line="7" column="41" lean-forward="true" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#1#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
