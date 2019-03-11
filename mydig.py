@@ -20,13 +20,21 @@ def dns_resolver(domain):
         data = dns.query.udp(query, server, 200) #timeout is 200 seconds per root server
         #check if answer section empty
         while len(data.answer) == 0:
-            name_server = data.additional[0].to_text().split(' ')[4].split('\n')[0] #parse out the name server
+            for additional in data.additional:
+                additional_parsed = additional.to_text().split(' ')
+                if additional_parsed[3] == 'A': #make sure it's response type 'A'
+                    name_server = additional_parsed[4]
+                    break
             data = dns.query.udp(query, name_server, 200) #query name server for the initial query
         auth_server = data.answer[0].to_text().split(' ')[4].split('\n')[0] #authoritative server
         auth_query = dns.message.make_query(auth_server, dns.rdatatype.from_text('A')) #get the auth server ip
         auth_data = dns.query.udp(auth_query, server, 200)
         while len(auth_data.answer) == 0:
-            name_server = auth_data.additional[0].to_text().split(' ')[4].split('\n')[0]  # parse out the name server
+            for additional in auth_data.additional:
+                additional_parsed = additional.to_text().split(' ')
+                if additional_parsed[3] == 'A': #make sure its response type 'A'
+                    name_server = additional_parsed[4] # parse out the name server
+                    break
             auth_data = dns.query.udp(auth_query, name_server, 200)  # query name server for the initial query
         #get the ip of answer
         auth_server = auth_data.answer[0].to_text().split(' ')[4].split('\n')[0]
