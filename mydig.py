@@ -4,11 +4,10 @@ import dns.name
 import dns.message
 import dns.query
 import dns.flags
+import dns.resolver
 import sys
-#the 13 root servers, the program will test each one in case some don't work
-ROOT_SERVERS = ['198.41.0.4', '199.9.14.201', '192.33.4.12', '199.7.91.13', '192.203.230.10',
-                '192.5.5.241', '192.112.36.4', '198.97.190.53', '192.36.148.17', '192.58.128.30',
-                '193.0.14.129', '199.7.83.42', '202.12.27.33']
+
+server = '199.7.91.13'
 
 
 def dns_resolver(domain):
@@ -16,19 +15,28 @@ def dns_resolver(domain):
     if not domain.is_absolute():
         domain = domain.concatenate(dns.name.root)
     query_start = time.time()
-    print('Querying for', domain)
-    for server in ROOT_SERVERS:
-        try:
-            print('Trying server', server)
-            query = dns.message.make_query(domain, 'A') #query for answer
-            data = dns.query.udp(query, server, 5) #timeout is 5 seconds per root server
-            if len(data.answer) == 0:
-                print('No response from server', server)
-            else:
-                return data, ((time.time() - query_start) * 1000)
-            #return a tuple for now
-        except dns.exception.Timeout:
-            print('Timeout occurred')
+    try:
+        query = dns.message.make_query(domain, dns.rdatatype.from_text('NS')) #query for name server
+        data = dns.query.udp(query, server, 200) #timeout is 200 seconds per root server
+        #check if answer section empty
+        while len(data.answer) == 0:
+            name_server = data.additional[0].to_text().split(' ')[4].split('\n')[0] #parse out the name server
+            data = dns.query.udp(query, name_server, 200) #query name server for the initial query
+        auth_server = data.answer[0].to_text().split(' ')[4].split('\n')[0] #authoritative server
+        auth_query = dns.message.make_query(auth_server, dns.rdatatype.from_text('A')) #get the auth server ip
+        auth_data = dns.query.udp(auth_query, server, 200)
+        while len(auth_data.answer) == 0:
+            name_server = auth_data.additional[0].to_text().split(' ')[4].split('\n')[0]  # parse out the name server
+            auth_data = dns.query.udp(auth_query, name_server, 200)  # query name server for the initial query
+        #get the ip of answer
+        auth_server = auth_data.answer[0].to_text().split(' ')[4].split('\n')[0]
+        query = dns.message.make_query(domain, dns.rdatatype.from_text('A'))
+        data = dns.query.udp(query, auth_server, 200)
+        total_time = ((time.time() - query_start) * 1000)
+        return data, total_time
+        #return a tuple for now
+    except dns.exception.Timeout:
+        print('Timeout occurred')
 
 
 if __name__ == '__main__':
