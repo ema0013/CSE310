@@ -59,7 +59,7 @@ def dns_resolver(domain):
 
 
 if __name__ == '__main__':
-    dns_data = dns_resolver(sys.argv[0]) #system arg so we can run from cmd
+    dns_data = dns_resolver(sys.argv[1]) #system arg so we can run from cmd
     print(';QUESTION SECTION:')
     for question in dns_data[0].question:
         print(question)
