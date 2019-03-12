@@ -7,14 +7,14 @@ import dns.flags
 import dns.resolver
 import sys
 
-server = '199.7.91.13'
+server = '199.7.91.13' #root server of choice
 
 
 def dns_resolver(domain):
     domain = dns.name.from_text(domain)
-    if not domain.is_absolute():
+    if not domain.is_absolute(): #the domain name has to be absolute
         domain = domain.concatenate(dns.name.root)
-    query_start = time.time()
+    query_start = time.time() #start query time
     try:
         query = dns.message.make_query(domain, dns.rdatatype.from_text('NS')) #query for name server
         data = dns.query.udp(query, server, 200) #timeout is 200 seconds per root server
@@ -50,8 +50,8 @@ def dns_resolver(domain):
         #get the ip of answer
         auth_server = auth_data.answer[0].to_text().split(' ')[4].split('\n')[0]
         query = dns.message.make_query(domain, dns.rdatatype.from_text('A'))
-        data = dns.query.udp(query, auth_server, 200)
-        total_time = ((time.time() - query_start) * 1000)
+        data = dns.query.udp(query, auth_server, 200) #this is where we query authority server for the ip of domain
+        total_time = ((time.time() - query_start) * 1000) #total time it took to query
         return data, total_time
         #return a tuple for now
     except dns.exception.Timeout:
@@ -59,19 +59,18 @@ def dns_resolver(domain):
 
 
 if __name__ == '__main__':
-    for x in range(10):
-        dns_data = dns_resolver(sys.argv[0]) #system arg so we can run from cmd
-        print(';QUESTION SECTION:')
-        for question in dns_data[0].question:
-            print(question)
-        print(';ANSWER SECTION:')
-        for answer in dns_data[0].answer:
-            print(answer)
-        print('Query Time:', int(dns_data[1]), 'ms')
-        print('WHEN:', datetime.datetime.now().strftime('%a'), datetime.datetime.now().strftime('%h'),
-              datetime.datetime.now().strftime('%d'), datetime.datetime.now().strftime('%H:%M:%S'),
-              datetime.datetime.now().strftime('%Y')) #current time
-        print('Message size rcvd:', len(dns_data[0].to_wire())) #towired length of the data
+    dns_data = dns_resolver(sys.argv[0]) #system arg so we can run from cmd
+    print(';QUESTION SECTION:')
+    for question in dns_data[0].question:
+        print(question)
+    print(';ANSWER SECTION:')
+    for answer in dns_data[0].answer:
+        print(answer)
+    print('Query Time:', int(dns_data[1]), 'ms')
+    print('WHEN:', datetime.datetime.now().strftime('%a'), datetime.datetime.now().strftime('%h'),
+        datetime.datetime.now().strftime('%d'), datetime.datetime.now().strftime('%H:%M:%S'),
+        datetime.datetime.now().strftime('%Y')) #current time
+    print('Message size rcvd:', len(dns_data[0].to_wire())) #towired length of the data
 
 
 
