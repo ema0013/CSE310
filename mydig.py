@@ -23,7 +23,7 @@ def dns_resolver(domain):
             for additional in data.additional:
                 additional_parsed = additional.to_text().split(' ')
                 if additional_parsed[3] == 'A': #make sure it's response type 'A'
-                    name_server = additional_parsed[4]
+                    name_server = additional_parsed[4].split('\n')[0]
                     break
             data = dns.query.udp(query, name_server, 200) #query name server for the initial query
         auth_server = data.answer[0].to_text().split(' ')[4].split('\n')[0] #authoritative server
@@ -33,7 +33,7 @@ def dns_resolver(domain):
             for additional in auth_data.additional:
                 additional_parsed = additional.to_text().split(' ')
                 if additional_parsed[3] == 'A': #make sure its response type 'A'
-                    name_server = additional_parsed[4] # parse out the name server
+                    name_server = additional_parsed[4].split('\n')[0] # parse out the name server
                     break
             auth_data = dns.query.udp(auth_query, name_server, 200)  # query name server for the initial query
         #get the ip of answer
