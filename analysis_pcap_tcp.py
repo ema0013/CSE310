@@ -98,7 +98,7 @@ def main():
                 flows.append((flows_half, flow_half))
                 break
                 # [0] is sender [1] is receiver
-    # 1, 2a,b,c
+    # A 1, 2a,b,c
     print('PCAP flows:\n')
     for (sender, receiver) in flows:
         sender.print_src_dest()
@@ -159,21 +159,17 @@ def main():
     for (sender, receiver) in flows:
         # find triple ack first
         sender.print_src_dest()
-        triple = 0
-        trip_count = 0
-        prev_ack = receiver.pkts[0].ack
+        first_occur = []
+        sec_occur = []
+        third_occur = []
         for pkt in receiver.pkts:
-            if pkt == receiver.pkts[0]:
-                continue
-            elif pkt.ack == prev_ack:
-                triple += 1
-                if triple == 3:
-                    trip_count += 1
-                    triple = 0
-            else:
-                triple = 0
-            prev_ack = pkt.ack
-        print('Retransmission via Triple-Ack:', trip_count)
+            if (pkt.ack in first_occur) and (pkt.ack not in sec_occur):
+                sec_occur.append(pkt.ack)
+            elif pkt.ack not in first_occur:
+                first_occur.append(pkt.ack)
+            elif (pkt.ack in first_occur) and (pkt.ack in sec_occur) and (pkt.ack not in third_occur):
+                third_occur.append(pkt.ack)
+        print("Number of retransmissions due to triple dup ack=" + str(len(third_occur)))
         # calculating timeouts
         rtt = receiver.pkts[1].ts - sender.pkts[2].ts
         # estimated rtt
