@@ -1,3 +1,3 @@
 # CSE310
 CSE310 assignments  
-Currently working on Assignment 1
+Currently working on Assignment 3
