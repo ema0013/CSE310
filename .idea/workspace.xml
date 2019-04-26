@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d3e65f24-80fe-4ee8-9d0c-17675929589d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis_pcap_tcp.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_pcap_tcp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +51,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/analysis_pcap_tcp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-126">
+            <state relative-caret-position="614">
               <caret line="170" column="14" selection-start-line="170" selection-start-column="14" selection-end-line="170" selection-end-column="14" />
             </state>
           </provider>
@@ -116,6 +115,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -132,7 +132,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -424,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555396292568</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="changes think i fixed algorithm for trip ack">
+      <created>1555428422726</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1555428422726</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView">
@@ -438,13 +444,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49684212" visible="true" weight="0.11368143" />
       <window_info id="Structure" order="1" sideWeight="0.5031579" side_tool="true" weight="0.24983476" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49966952" visible="true" weight="0.39943343" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49966952" weight="0.39943343" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -481,7 +488,8 @@
     <MESSAGE value="final commit to mydig" />
     <MESSAGE value="d" />
     <MESSAGE value="pcap analyzer &#10;wireshark will be infinitely superior to whatever I made here" />
-    <option name="LAST_COMMIT_MESSAGE" value="pcap analyzer &#10;wireshark will be infinitely superior to whatever I made here" />
+    <MESSAGE value="changes think i fixed algorithm for trip ack" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes think i fixed algorithm for trip ack" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
@@ -512,6 +520,11 @@
         <state relative-caret-position="126">
           <caret line="105" selection-start-line="105" selection-end-line="105" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/analysis_pcap_tcp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1716" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mydig.py">
@@ -546,7 +559,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/analysis_pcap_tcp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-126">
+        <state relative-caret-position="614">
           <caret line="170" column="14" selection-start-line="170" selection-start-column="14" selection-end-line="170" selection-end-column="14" />
         </state>
       </provider>
