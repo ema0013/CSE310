@@ -29,7 +29,7 @@ def main():
           '\nSender MAC Address:', "%x:%x:%x:%x:%x:%x" % struct.unpack("BBBBBB", arp_exchange[0][22:28]),
           '\nSender IP Address:', "%x.%x.%x.%x" % struct.unpack("BBBB", arp_exchange[0][28:32]),
           '\nTarget MAC Address:', "%x:%x:%x:%x:%x:%x" % struct.unpack("BBBBBB", arp_exchange[0][32:38]),
-          '\nSender IP Address:', "%x.%x.%x.%x" % struct.unpack("BBBB", arp_exchange[0][38:42]))
+          '\nTarget IP Address:', "%x.%x.%x.%x" % struct.unpack("BBBB", arp_exchange[0][38:42]))
     print('Receiver:',
           '\nHardware Type:', int.from_bytes(arp_exchange[1][14:16], 'big', signed=False), hardwares.get(arp_exchange[1][14:16]),
           '\nProtocol Type:', arp_exchange[1][16:18], protocols.get(arp_exchange[1][16:18]),
@@ -39,7 +39,7 @@ def main():
           '\nSender MAC Address:', "%x:%x:%x:%x:%x:%x" % struct.unpack("BBBBBB", arp_exchange[1][22:28]),
           '\nSender IP Address:', "%x.%x.%x.%x" % struct.unpack("BBBB", arp_exchange[1][28:32]),
           '\nTarget MAC Address:', "%x:%x:%x:%x:%x:%x" % struct.unpack("BBBBBB", arp_exchange[1][32:38]),
-          '\nSender IP Address:', "%x.%x.%x.%x" % struct.unpack("BBBB", arp_exchange[1][38:42]))
+          '\nTarget IP Address:', "%x.%x.%x.%x" % struct.unpack("BBBB", arp_exchange[1][38:42]))
 
 
 if __name__ == "__main__":
